@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package example;
+
+import "errors/errors.proto";
+
+option go_package = "github.com/orzkratos/errgen/examples/basic;basic";
+
+enum ErrorReason {
+  option (errors.default_code) = 500;
+  
+  // Unknown error
+  UNKNOWN = 0;
+  
+  // User not found  
+  USER_NOT_FOUND = 1 [(errors.code) = 404];
+  
+  // Invalid parameter
+  INVALID_PARAMETER = 2 [(errors.code) = 400];
+}
