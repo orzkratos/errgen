@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package api;
+
+import "errors/errors.proto";
+
+option go_package = "github.com/orzkratos/errgen/internal/examples/example2;example2";
+
+enum ApiError {
+  option (errors.default_code) = 500;
+  
+  // Service unavailable
+  SERVICE_UNAVAILABLE = 0;
+  
+  // Authentication failed
+  AUTH_FAILED = 1 [(errors.code) = 401];
+  
+  // Permission denied
+  PERMISSION_DENIED = 2 [(errors.code) = 403];
+  
+  // Rate limit exceeded
+  RATE_LIMIT_EXCEEDED = 3 [(errors.code) = 429];
+}
