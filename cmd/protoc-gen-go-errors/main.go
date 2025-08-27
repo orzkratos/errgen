@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/orzkratos/errgen/internal/codegen"
+	"github.com/orzkratos/errgenkratos/erkgen"
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/types/pluginpb"
 )
@@ -26,7 +26,7 @@ func main() {
 			if !f.Generate {
 				continue
 			}
-			codegen.GenerateFile(gen, f, codegen.Config{
+			erkgen.GenerateFile(gen, f, erkgen.Config{
 				GeneratorName: "protoc-gen-go-errors (errgen)",
 			})
 		}

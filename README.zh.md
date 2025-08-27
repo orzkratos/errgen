@@ -1,80 +1,71 @@
 # errgen
 
-Kratos 错误处理代码生成增强插件，减少样板代码并支持自定义字段扩展。
+errgenkratos 的兼容性包装器，提供经典的 protoc-gen-go-errors 命令，同时使用最新的实现。
 
 ## 英文文档
 
 [ENGLISH README](README.md)
 
-## 核心特性
+## 概述
 
-- 🚀 **简洁代码生成**: 使用泛型函数减少重复代码
-- 🎯 **单行函数体**: 每个生成的函数体内仅有一行代码
-- 🔧 **可配置元数据**: 支持添加包含枚举值的自定义元数据字段
-- 📦 **简单集成**: 完全兼容 protoc-gen-go-errors 的替代方案
-- ⚡ **高性能**: 编译时泛型实现最小运行时开销
+此项目为现有的 protoc-gen-go-errors 用户提供向后兼容性，同时将所有功能委托给新的 [errgenkratos](https://github.com/orzkratos/errgenkratos) 项目。
+
+**对于新项目，我们推荐直接使用 [errgenkratos](https://github.com/orzkratos/errgenkratos) 以获取最新功能和改进。**
 
 ## 安装
 
-选择以下选项之一：
-
-### 选项 1: 兼容版本（完全替代）
 ```bash
 go install github.com/orzkratos/errgen/cmd/protoc-gen-go-errors@latest
 ```
 
-### 选项 2: 品牌版本（orzkratos 风格）
-```bash
-go install github.com/orzkratos/errgen/cmd/protoc-gen-orzkratos-errors@latest
-```
-
 ## 使用方法
 
-### 使用兼容版本
 ```bash
 protoc --go-errors_out=paths=source_relative:./your_output_dir your_proto_files.proto
-```
-
-### 使用品牌版本
-```bash
-protoc --orzkratos-errors_out=paths=source_relative:./your_output_dir your_proto_files.proto
 ```
 
 ### 生成代码示例
 
 ```go
-// 由 protoc-gen-orzkratos-errors 生成
+// 由 protoc-gen-go-errors 生成
 
 // 用户未找到
 func IsUserNotFound(err error) bool {
-    return errgen.IsError(err, ErrorReason_USER_NOT_FOUND, 404)
+    return errgenkratos.IsError(err, ErrorReason_USER_NOT_FOUND, 404)
 }
 
 // 用户未找到  
 func ErrorUserNotFound(format string, args ...interface{}) *errors.Error {
-    return errgen.NewError(404, ErrorReason_USER_NOT_FOUND, format, args...)
+    return errgenkratos.NewError(404, ErrorReason_USER_NOT_FOUND, format, args...)
 }
 ```
 
 ### 设置自定义元数据字段
 
-有两种方式配置元数据字段：
-
-**方式 1: 在业务代码中设置（推荐）**
+在业务代码中配置元数据字段：
 
 ```go
 import "github.com/orzkratos/errgen"
 
 func init() {
     // 设置自定义元数据字段名
-    errgen.SetMetadataField("codeNum")
+    errgen.SetMetadataFieldName("codeNum")
 }
 ```
 
-**方式 2: 通过命令行参数**
+## 迁移到 errgenkratos
+
+对于新功能和活跃开发，请考虑迁移到 [errgenkratos](https://github.com/orzkratos/errgenkratos)：
 
 ```bash
-protoc --orzkratos-errors_out=paths=source_relative,metadata_field=codeNum:./your_output_dir your_proto_files.proto
+# 安装新插件
+go install github.com/orzkratos/errgenkratos/cmd/protoc-gen-orzkratos-errors@latest
+
+# 更新 protoc 命令
+protoc --orzkratos-errors_out=paths=source_relative:./your_output_dir your_proto_files.proto
+
+# 更新导入
+import "github.com/orzkratos/errgenkratos"
 ```
 
 ## 环境要求
