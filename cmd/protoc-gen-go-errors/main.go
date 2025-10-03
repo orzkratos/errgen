@@ -1,8 +1,14 @@
+// Package main implements protoc-gen-go-errors plugin
+// This is a backward-compatible wrapper around errgenkratos
+//
+// main 实现 protoc-gen-go-errors 插件
+// 这是 errgenkratos 的向后兼容包装
 package main
 
 import (
 	"flag"
 	"fmt"
+	"runtime/debug"
 
 	"github.com/orzkratos/errgenkratos/erkgen"
 	"google.golang.org/protobuf/compiler/protogen"
@@ -14,7 +20,11 @@ var showVersion = flag.Bool("version", false, "print the version and exit")
 func main() {
 	flag.Parse()
 	if *showVersion {
-		fmt.Printf("protoc-gen-go-errors %v\n", release)
+		if info, ok := debug.ReadBuildInfo(); ok {
+			fmt.Printf("protoc-gen-go-errors %v (module: %s) (target: %s)\n", release, info.Main.Path, info.Path)
+		} else {
+			fmt.Printf("protoc-gen-go-errors %v\n", release)
+		}
 		return
 	}
 	var flags flag.FlagSet

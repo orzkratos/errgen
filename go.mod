@@ -4,7 +4,7 @@ go 1.25.0
 
 require (
 	github.com/go-kratos/kratos/v2 v2.9.1
-	github.com/orzkratos/errgenkratos v0.0.4
+	github.com/orzkratos/errgenkratos v0.0.5
 	github.com/stretchr/testify v1.11.1
 	google.golang.org/protobuf v1.36.10
 )
@@ -19,4 +19,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/orzkratos/errgenkratos => /Users/admin/go-projects/orzkratos/errgenkratos
+retract v0.0.2 // wrong version
