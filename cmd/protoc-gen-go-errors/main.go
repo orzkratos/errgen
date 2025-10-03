@@ -18,6 +18,8 @@ func main() {
 		return
 	}
 	var flags flag.FlagSet
+	includeNested := flags.Bool("include_nested", false, "include nested enums")
+	separateNamed := flags.Bool("separate_named", false, "use underscore_names")
 	protogen.Options{
 		ParamFunc: flags.Set,
 	}.Run(func(gen *protogen.Plugin) error {
@@ -28,6 +30,8 @@ func main() {
 			}
 			erkgen.GenerateFile(gen, f, erkgen.Config{
 				GeneratorName: "protoc-gen-go-errors (errgen)",
+				IncludeNested: *includeNested,
+				SeparateNamed: *separateNamed,
 			})
 		}
 		return nil

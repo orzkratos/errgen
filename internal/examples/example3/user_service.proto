@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package example3;
+
+import "errors/errors.proto";
+
+option go_package = "github.com/orzkratos/errgen/internal/examples/example3;example3";
+
+// User management service
+// 用户管理服务
+service UserService {
+  // Get user by username
+  // 根据用户名获取用户信息
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+}
+
+// Get user request
+// 获取用户信息请求
+message GetUserRequest {
+  // Username to query
+  int64 username = 1;
+}
+
+// Get user response
+// 获取用户信息响应
+message GetUserResponse {
+  // Username
+  string username = 1;
+  // Display name
+  string nickname = 2;
+  // Current user status
+  UserStatus status = 3;
+
+  // User status enum
+  // 用户状态枚举
+  enum UserStatus {
+    // Unknown status
+    STATUS_UNKNOWN = 0;
+    // Active user
+    ACTIVE = 1;
+    // Inactive user
+    INACTIVE = 2;
+    // Suspended user
+    SUSPENDED = 3;
+  }
+
+  // GetUser-specific error codes
+  // GetUser特定错误码
+  enum ErrorCode {
+    // Unknown error
+    UNKNOWN = 0 [(errors.code) = 500];
+    // User not found
+    USER_NOT_FOUND = 1 [(errors.code) = 404];
+    // Access denied
+    ACCESS_DENIED = 2 [(errors.code) = 403];
+    // Invalid username
+    INVALID_USER_ID = 3 [(errors.code) = 400];
+  }
+}

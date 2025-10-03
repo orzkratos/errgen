@@ -1,23 +1,44 @@
 syntax = "proto3";
 
-package api;
+package example;
 
 import "errors/errors.proto";
 
 option go_package = "github.com/orzkratos/errgen/internal/examples/example2;example2";
 
-enum ApiError {
+// Top-level error enum
+enum ErrorReason {
   option (errors.default_code) = 500;
-  
+
+  // Unknown error
+  UNKNOWN = 0 [(errors.code) = 500];
+
   // Service unavailable
-  SERVICE_UNAVAILABLE = 0;
-  
-  // Authentication failed
-  AUTH_FAILED = 1 [(errors.code) = 401];
-  
-  // Permission denied
-  PERMISSION_DENIED = 2 [(errors.code) = 403];
-  
-  // Rate limit exceeded
-  RATE_LIMIT_EXCEEDED = 3 [(errors.code) = 429];
+  SERVICE_UNAVAILABLE = 1 [(errors.code) = 503];
+
+  // Request timeout
+  REQUEST_TIMEOUT = 2 [(errors.code) = 408];
+}
+
+// User info response
+message GetInfoResp {
+  string username = 1;
+  string nickname = 2;
+
+  // Nested error enum
+  enum ErrorCode {
+    option (errors.default_code) = 500;
+
+    // Unknown error
+    UNKNOWN = 0 [(errors.code) = 500];
+
+    // User not found
+    USER_NOT_FOUND = 1 [(errors.code) = 404];
+
+    // User already exists
+    USER_ALREADY_EXISTS = 2 [(errors.code) = 409];
+
+    // Invalid user data
+    INVALID_USER_DATA = 3 [(errors.code) = 400];
+  }
 }

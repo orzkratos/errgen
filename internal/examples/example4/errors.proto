@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package example4;
+
+import "errors/errors.proto";
+
+option go_package = "github.com/orzkratos/errgen/internal/examples/example4;example4";
+
+// Order management service
+// 订单管理服务
+service OrderService {
+  // Get order details
+  // 获取订单详情
+  rpc GetOrder(GetOrderRequest) returns (GetOrderResponse);
+}
+
+// Get order request
+// 获取订单请求
+message GetOrderRequest {
+  // Order ID to query
+  string order_uuid = 1;
+}
+
+// Get order response
+// 获取订单响应
+message GetOrderResponse {
+  // Order ID
+  string order_uuid = 1;
+  // Product ID
+  int64 product_uuid = 2;
+  // Order amount
+  double amount = 3;
+
+  // GetOrder-specific error codes
+  // GetOrder特定错误码
+  enum ErrorCode {
+    // Unknown error
+    UNKNOWN = 0 [(errors.code) = 500];
+    // Order not found
+    ORDER_NOT_FOUND = 1 [(errors.code) = 404];
+    // Order expired
+    ORDER_EXPIRED = 2 [(errors.code) = 410];
+    // Access denied
+    ACCESS_DENIED = 3 [(errors.code) = 403];
+  }
+}

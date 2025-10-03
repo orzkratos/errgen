@@ -11,52 +11,42 @@ import (
 // is compatible with the kratos package it is being compiled against.
 const _ = errors.SupportPackageIsVersion1
 
-// Invalid request
-func IsInvalidRequest(err error) bool {
-	return errgenkratos.IsError(err, BusinessError_INVALID_REQUEST, 400)
+// Unknown error
+func IsUnknown(err error) bool {
+	return errgenkratos.IsError(err, ErrorReason_UNKNOWN, 500)
 }
 
-// Invalid request
-func ErrorInvalidRequest(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(400, BusinessError_INVALID_REQUEST, format, args...)
+// Unknown error
+func ErrorUnknown(format string, args ...interface{}) *errors.Error {
+	return errgenkratos.NewError(500, ErrorReason_UNKNOWN, format, args...)
 }
 
-// Order not found
-func IsOrderNotFound(err error) bool {
-	return errgenkratos.IsError(err, BusinessError_ORDER_NOT_FOUND, 404)
+// Internal server error
+func IsInternalError(err error) bool {
+	return errgenkratos.IsError(err, ErrorReason_INTERNAL_ERROR, 500)
 }
 
-// Order not found
-func ErrorOrderNotFound(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(404, BusinessError_ORDER_NOT_FOUND, format, args...)
+// Internal server error
+func ErrorInternalError(format string, args ...interface{}) *errors.Error {
+	return errgenkratos.NewError(500, ErrorReason_INTERNAL_ERROR, format, args...)
 }
 
-// Payment failed
-func IsPaymentFailed(err error) bool {
-	return errgenkratos.IsError(err, BusinessError_PAYMENT_FAILED, 402)
+// Service unavailable
+func IsServiceUnavailable(err error) bool {
+	return errgenkratos.IsError(err, ErrorReason_SERVICE_UNAVAILABLE, 503)
 }
 
-// Payment failed
-func ErrorPaymentFailed(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(402, BusinessError_PAYMENT_FAILED, format, args...)
+// Service unavailable
+func ErrorServiceUnavailable(format string, args ...interface{}) *errors.Error {
+	return errgenkratos.NewError(503, ErrorReason_SERVICE_UNAVAILABLE, format, args...)
 }
 
-// Insufficient inventory
-func IsInsufficientInventory(err error) bool {
-	return errgenkratos.IsError(err, BusinessError_INSUFFICIENT_INVENTORY, 409)
+// Request timeout
+func IsRequestTimeout(err error) bool {
+	return errgenkratos.IsError(err, ErrorReason_REQUEST_TIMEOUT, 408)
 }
 
-// Insufficient inventory
-func ErrorInsufficientInventory(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(409, BusinessError_INSUFFICIENT_INVENTORY, format, args...)
-}
-
-// Order expired
-func IsOrderExpired(err error) bool {
-	return errgenkratos.IsError(err, BusinessError_ORDER_EXPIRED, 410)
-}
-
-// Order expired
-func ErrorOrderExpired(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(410, BusinessError_ORDER_EXPIRED, format, args...)
+// Request timeout
+func ErrorRequestTimeout(format string, args ...interface{}) *errors.Error {
+	return errgenkratos.NewError(408, ErrorReason_REQUEST_TIMEOUT, format, args...)
 }

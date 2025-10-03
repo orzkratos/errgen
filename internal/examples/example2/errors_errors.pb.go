@@ -11,42 +11,72 @@ import (
 // is compatible with the kratos package it is being compiled against.
 const _ = errors.SupportPackageIsVersion1
 
+// Unknown error
+func IsUnknown(err error) bool {
+	return errgenkratos.IsError(err, ErrorReason_UNKNOWN, 500)
+}
+
+// Unknown error
+func ErrorUnknown(format string, args ...interface{}) *errors.Error {
+	return errgenkratos.NewError(500, ErrorReason_UNKNOWN, format, args...)
+}
+
 // Service unavailable
 func IsServiceUnavailable(err error) bool {
-	return errgenkratos.IsError(err, ApiError_SERVICE_UNAVAILABLE, 500)
+	return errgenkratos.IsError(err, ErrorReason_SERVICE_UNAVAILABLE, 503)
 }
 
 // Service unavailable
 func ErrorServiceUnavailable(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(500, ApiError_SERVICE_UNAVAILABLE, format, args...)
+	return errgenkratos.NewError(503, ErrorReason_SERVICE_UNAVAILABLE, format, args...)
 }
 
-// Authentication failed
-func IsAuthFailed(err error) bool {
-	return errgenkratos.IsError(err, ApiError_AUTH_FAILED, 401)
+// Request timeout
+func IsRequestTimeout(err error) bool {
+	return errgenkratos.IsError(err, ErrorReason_REQUEST_TIMEOUT, 408)
 }
 
-// Authentication failed
-func ErrorAuthFailed(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(401, ApiError_AUTH_FAILED, format, args...)
+// Request timeout
+func ErrorRequestTimeout(format string, args ...interface{}) *errors.Error {
+	return errgenkratos.NewError(408, ErrorReason_REQUEST_TIMEOUT, format, args...)
 }
 
-// Permission denied
-func IsPermissionDenied(err error) bool {
-	return errgenkratos.IsError(err, ApiError_PERMISSION_DENIED, 403)
+// Unknown error
+func IsGetInfoRespUnknown(err error) bool {
+	return errgenkratos.IsError(err, GetInfoResp_UNKNOWN, 500)
 }
 
-// Permission denied
-func ErrorPermissionDenied(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(403, ApiError_PERMISSION_DENIED, format, args...)
+// Unknown error
+func ErrorGetInfoRespUnknown(format string, args ...interface{}) *errors.Error {
+	return errgenkratos.NewError(500, GetInfoResp_UNKNOWN, format, args...)
 }
 
-// Rate limit exceeded
-func IsRateLimitExceeded(err error) bool {
-	return errgenkratos.IsError(err, ApiError_RATE_LIMIT_EXCEEDED, 429)
+// User not found
+func IsGetInfoRespUserNotFound(err error) bool {
+	return errgenkratos.IsError(err, GetInfoResp_USER_NOT_FOUND, 404)
 }
 
-// Rate limit exceeded
-func ErrorRateLimitExceeded(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(429, ApiError_RATE_LIMIT_EXCEEDED, format, args...)
+// User not found
+func ErrorGetInfoRespUserNotFound(format string, args ...interface{}) *errors.Error {
+	return errgenkratos.NewError(404, GetInfoResp_USER_NOT_FOUND, format, args...)
+}
+
+// User already exists
+func IsGetInfoRespUserAlreadyExists(err error) bool {
+	return errgenkratos.IsError(err, GetInfoResp_USER_ALREADY_EXISTS, 409)
+}
+
+// User already exists
+func ErrorGetInfoRespUserAlreadyExists(format string, args ...interface{}) *errors.Error {
+	return errgenkratos.NewError(409, GetInfoResp_USER_ALREADY_EXISTS, format, args...)
+}
+
+// Invalid user data
+func IsGetInfoRespInvalidUserData(err error) bool {
+	return errgenkratos.IsError(err, GetInfoResp_INVALID_USER_DATA, 400)
+}
+
+// Invalid user data
+func ErrorGetInfoRespInvalidUserData(format string, args ...interface{}) *errors.Error {
+	return errgenkratos.NewError(400, GetInfoResp_INVALID_USER_DATA, format, args...)
 }

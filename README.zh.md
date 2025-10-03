@@ -1,10 +1,21 @@
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/orzkratos/errgen/release.yml?branch=main&label=BUILD)](https://github.com/orzkratos/errgen/actions/workflows/release.yml?query=branch%3Amain)
+[![GoDoc](https://pkg.go.dev/badge/github.com/orzkratos/errgen)](https://pkg.go.dev/github.com/orzkratos/errgen)
+[![Coverage Status](https://img.shields.io/coveralls/github/orzkratos/errgen/main.svg)](https://coveralls.io/github/orzkratos/errgen?branch=main)
+[![Supported Go Versions](https://img.shields.io/badge/Go-1.25+-lightgrey.svg)](https://go.dev/)
+[![GitHub Release](https://img.shields.io/github/release/orzkratos/errgen.svg)](https://github.com/orzkratos/errgen/releases)
+[![Go Report Card](https://goreportcard.com/badge/github.com/orzkratos/errgen)](https://goreportcard.com/report/github.com/orzkratos/errgen)
+
 # errgen
 
 errgenkratos 的兼容性包装器，提供经典的 protoc-gen-go-errors 命令，同时使用最新的实现。
 
+---
+
+<!-- TEMPLATE (ZH) BEGIN: LANGUAGE NAVIGATION -->
 ## 英文文档
 
 [ENGLISH README](README.md)
+<!-- TEMPLATE (ZH) END: LANGUAGE NAVIGATION -->
 
 ## 概述
 
@@ -20,8 +31,23 @@ go install github.com/orzkratos/errgen/cmd/protoc-gen-go-errors@latest
 
 ## 使用方法
 
+### 标准生成（顶层枚举）
 ```bash
 protoc --go-errors_out=paths=source_relative:./your_output_dir your_proto_files.proto
+```
+
+### 开启嵌套枚举支持
+
+启用 `include_nested=true` 参数，当枚举嵌套在 message 内部时生成错误辅助函数：
+
+```bash
+protoc --go-errors_out=include_nested=true,paths=source_relative:./your_output_dir your_proto_files.proto
+```
+
+### 使用下划线命名
+
+```bash
+protoc --go-errors_out=include_nested=true,separate_named=true,paths=source_relative:./your_output_dir your_proto_files.proto
 ```
 
 ### 生成代码示例
@@ -53,6 +79,14 @@ func init() {
 }
 ```
 
+## 示例
+
+查看 [examples](internal/examples/) DIR：
+- [example1](internal/examples/example1/) - 基础顶层枚举错误生成
+- [example2](internal/examples/example2/) - 单文件嵌套枚举支持
+- [example3](internal/examples/example3/) - 多文件项目与服务定义
+- [example4](internal/examples/example4/) - 嵌套枚举使用下划线命名
+
 ## 迁移到 errgenkratos
 
 对于新功能和活跃开发，请考虑迁移到 [errgenkratos](https://github.com/orzkratos/errgenkratos)：
@@ -77,6 +111,7 @@ import "github.com/orzkratos/errgenkratos"
 ---
 
 <!-- TEMPLATE (ZH) BEGIN: STANDARD PROJECT FOOTER -->
+<!-- VERSION 2025-09-26 07:39:27.188023 +0000 UTC -->
 
 ## 📄 许可证类型
 
@@ -96,7 +131,7 @@ MIT 许可证。详见 [LICENSE](LICENSE)。
 - 🔧 **配置困扰？** 询问复杂设置的相关问题
 - 📢 **关注进展？** 关注仓库以获取新版本和功能
 - 🌟 **成功案例？** 分享这个包如何改善工作流程
-- 💬 **意见反馈？** 欢迎所有建议和宝贵意见
+- 💬 **反馈意见？** 欢迎提出建议和意见
 
 ---
 
@@ -114,7 +149,7 @@ MIT 许可证。详见 [LICENSE](LICENSE)。
 8. **暂存**：暂存更改（`git add .`）
 9. **提交**：提交更改（`git commit -m "Add feature xxx"`）确保向后兼容的代码
 10. **推送**：推送到分支（`git push origin feature/xxx`）
-11. **PR**：在 GitHub 上打开 Pull Request（在 GitHub 网页上）并提供详细描述
+11. **PR**：在 GitHub 上打开 Merge Request（在 GitHub 网页上）并提供详细描述
 
 请确保测试通过并包含相关的文档更新。
 
@@ -122,7 +157,7 @@ MIT 许可证。详见 [LICENSE](LICENSE)。
 
 ## 🌟 项目支持
 
-非常欢迎通过提交 Pull Request 和报告问题来为此项目做出贡献。
+非常欢迎通过提交 Merge Request 和报告问题来为此项目做出贡献。
 
 **项目支持：**
 
@@ -131,7 +166,7 @@ MIT 许可证。详见 [LICENSE](LICENSE)。
 - 📝 **撰写博客**关于开发工具和工作流程 - 我们提供写作支持
 - 🌟 **加入生态** - 致力于支持开源和（golang）开发场景
 
-**使用这个包快乐编程！** 🎉
+**祝你用这个包编程愉快！** 🎉🎉🎉
 
 <!-- TEMPLATE (ZH) END: STANDARD PROJECT FOOTER -->
 

@@ -1,26 +1,22 @@
 syntax = "proto3";
 
-package business;
+package example3;
 
 import "errors/errors.proto";
 
 option go_package = "github.com/orzkratos/errgen/internal/examples/example3;example3";
 
-enum BusinessError {
-  option (errors.default_code) = 400;
-  
-  // Invalid request
-  INVALID_REQUEST = 0;
-  
-  // Order not found
-  ORDER_NOT_FOUND = 1 [(errors.code) = 404];
-  
-  // Payment failed
-  PAYMENT_FAILED = 2 [(errors.code) = 402];
-  
-  // Insufficient inventory
-  INSUFFICIENT_INVENTORY = 3 [(errors.code) = 409];
-  
-  // Order expired
-  ORDER_EXPIRED = 4 [(errors.code) = 410];
+// Global error codes for common issues
+// 全局错误码，用于通用问题
+enum ErrorReason {
+  option (errors.default_code) = 500;
+
+  // Unknown error
+  UNKNOWN = 0 [(errors.code) = 500];
+  // Internal server error
+  INTERNAL_ERROR = 1 [(errors.code) = 500];
+  // Service unavailable
+  SERVICE_UNAVAILABLE = 2 [(errors.code) = 503];
+  // Request timeout
+  REQUEST_TIMEOUT = 3 [(errors.code) = 408];
 }
