@@ -4,7 +4,7 @@ package example3
 
 import (
 	errors "github.com/go-kratos/kratos/v2/errors"
-	errgenkratos "github.com/orzkratos/errgenkratos"
+	newerk "github.com/orzkratos/errkratos/newerk"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -13,40 +13,40 @@ const _ = errors.SupportPackageIsVersion1
 
 // Unknown error
 func IsUnknown(err error) bool {
-	return errgenkratos.IsError(err, ErrorReason_UNKNOWN, 500)
+	return newerk.IsError(err, ErrorReason_UNKNOWN, 500)
 }
 
 // Unknown error
 func ErrorUnknown(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(500, ErrorReason_UNKNOWN, format, args...)
+	return newerk.NewError(500, ErrorReason_UNKNOWN, format, args...)
 }
 
 // Internal server error
 func IsInternalError(err error) bool {
-	return errgenkratos.IsError(err, ErrorReason_INTERNAL_ERROR, 500)
+	return newerk.IsError(err, ErrorReason_INTERNAL_ERROR, 500)
 }
 
 // Internal server error
 func ErrorInternalError(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(500, ErrorReason_INTERNAL_ERROR, format, args...)
+	return newerk.NewError(500, ErrorReason_INTERNAL_ERROR, format, args...)
 }
 
 // Service unavailable
 func IsServiceUnavailable(err error) bool {
-	return errgenkratos.IsError(err, ErrorReason_SERVICE_UNAVAILABLE, 503)
+	return newerk.IsError(err, ErrorReason_SERVICE_UNAVAILABLE, 503)
 }
 
 // Service unavailable
 func ErrorServiceUnavailable(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(503, ErrorReason_SERVICE_UNAVAILABLE, format, args...)
+	return newerk.NewError(503, ErrorReason_SERVICE_UNAVAILABLE, format, args...)
 }
 
 // Request timeout
 func IsRequestTimeout(err error) bool {
-	return errgenkratos.IsError(err, ErrorReason_REQUEST_TIMEOUT, 408)
+	return newerk.IsError(err, ErrorReason_REQUEST_TIMEOUT, 408)
 }
 
 // Request timeout
 func ErrorRequestTimeout(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(408, ErrorReason_REQUEST_TIMEOUT, format, args...)
+	return newerk.NewError(408, ErrorReason_REQUEST_TIMEOUT, format, args...)
 }

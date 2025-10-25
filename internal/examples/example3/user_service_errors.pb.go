@@ -4,7 +4,7 @@ package example3
 
 import (
 	errors "github.com/go-kratos/kratos/v2/errors"
-	errgenkratos "github.com/orzkratos/errgenkratos"
+	newerk "github.com/orzkratos/errkratos/newerk"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -13,40 +13,40 @@ const _ = errors.SupportPackageIsVersion1
 
 // Unknown error
 func IsGetUserResponseUnknown(err error) bool {
-	return errgenkratos.IsError(err, GetUserResponse_UNKNOWN, 500)
+	return newerk.IsError(err, GetUserResponse_UNKNOWN, 500)
 }
 
 // Unknown error
 func ErrorGetUserResponseUnknown(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(500, GetUserResponse_UNKNOWN, format, args...)
+	return newerk.NewError(500, GetUserResponse_UNKNOWN, format, args...)
 }
 
 // User not found
 func IsGetUserResponseUserNotFound(err error) bool {
-	return errgenkratos.IsError(err, GetUserResponse_USER_NOT_FOUND, 404)
+	return newerk.IsError(err, GetUserResponse_USER_NOT_FOUND, 404)
 }
 
 // User not found
 func ErrorGetUserResponseUserNotFound(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(404, GetUserResponse_USER_NOT_FOUND, format, args...)
+	return newerk.NewError(404, GetUserResponse_USER_NOT_FOUND, format, args...)
 }
 
 // Access denied
 func IsGetUserResponseAccessDenied(err error) bool {
-	return errgenkratos.IsError(err, GetUserResponse_ACCESS_DENIED, 403)
+	return newerk.IsError(err, GetUserResponse_ACCESS_DENIED, 403)
 }
 
 // Access denied
 func ErrorGetUserResponseAccessDenied(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(403, GetUserResponse_ACCESS_DENIED, format, args...)
+	return newerk.NewError(403, GetUserResponse_ACCESS_DENIED, format, args...)
 }
 
 // Invalid username
 func IsGetUserResponseInvalidUserId(err error) bool {
-	return errgenkratos.IsError(err, GetUserResponse_INVALID_USER_ID, 400)
+	return newerk.IsError(err, GetUserResponse_INVALID_USER_ID, 400)
 }
 
 // Invalid username
 func ErrorGetUserResponseInvalidUserId(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(400, GetUserResponse_INVALID_USER_ID, format, args...)
+	return newerk.NewError(400, GetUserResponse_INVALID_USER_ID, format, args...)
 }

@@ -6,12 +6,12 @@ import (
 
 	"github.com/go-kratos/kratos/v2/errors"
 	"github.com/orzkratos/errgen/internal/examples/example1"
-	"github.com/orzkratos/errgenkratos"
+	"github.com/orzkratos/errkratos/newerk"
 	"github.com/stretchr/testify/require"
 )
 
 func TestMain(m *testing.M) {
-	errgenkratos.SetMetadataFieldName("reason_numeric")
+	newerk.SetReasonCodeFieldName("numeric_reason_code_enum")
 	m.Run()
 }
 
@@ -95,7 +95,7 @@ func TestMetadataFieldName(t *testing.T) {
 
 	require.NotNil(t, erk.Metadata)
 
-	reason, exists := erk.Metadata["reason_numeric"]
+	reason, exists := erk.Metadata["numeric_reason_code_enum"]
 	require.True(t, exists)
 
 	expectedReason := fmt.Sprintf("%d", example1.ErrorReason_UNKNOWN.Number())

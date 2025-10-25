@@ -57,12 +57,12 @@ protoc --go-errors_out=include_nested=true,separate_named=true,paths=source_rela
 
 // User not found
 func IsUserNotFound(err error) bool {
-    return errgenkratos.IsError(err, ErrorReason_USER_NOT_FOUND, 404)
+    return newerk.IsError(err, ErrorReason_USER_NOT_FOUND, 404)
 }
 
-// User not found  
+// User not found
 func ErrorUserNotFound(format string, args ...interface{}) *errors.Error {
-    return errgenkratos.NewError(404, ErrorReason_USER_NOT_FOUND, format, args...)
+    return newerk.NewError(404, ErrorReason_USER_NOT_FOUND, format, args...)
 }
 ```
 
@@ -71,11 +71,11 @@ func ErrorUserNotFound(format string, args ...interface{}) *errors.Error {
 Configure metadata field in the business code:
 
 ```go
-import "github.com/orzkratos/errgen"
+import "github.com/orzkratos/errkratos/newerk"
 
 func init() {
     // Set custom metadata field name
-    errgen.SetMetadataFieldName("codeNum")
+    newerk.SetReasonCodeFieldName("numeric_reason_code_enum")
 }
 ```
 
@@ -92,14 +92,14 @@ Check out the [examples](internal/examples/) DIR:
 To access new features and active development, migrate to [errgenkratos](https://github.com/orzkratos/errgenkratos):
 
 ```bash
-# Install the new plugin
+# Get the new plugin
 go install github.com/orzkratos/errgenkratos/cmd/protoc-gen-orzkratos-errors@latest
 
 # Update the protoc command
 protoc --orzkratos-errors_out=paths=source_relative:./your_output_dir your_proto_files.proto
 
 # Update the imports
-import "github.com/orzkratos/errgenkratos"
+import "github.com/orzkratos/errkratos/newerk"
 ```
 
 ## Requirements

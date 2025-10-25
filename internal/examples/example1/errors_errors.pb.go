@@ -4,7 +4,7 @@ package example1
 
 import (
 	errors "github.com/go-kratos/kratos/v2/errors"
-	errgenkratos "github.com/orzkratos/errgenkratos"
+	newerk "github.com/orzkratos/errkratos/newerk"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -13,30 +13,30 @@ const _ = errors.SupportPackageIsVersion1
 
 // Unknown error
 func IsUnknown(err error) bool {
-	return errgenkratos.IsError(err, ErrorReason_UNKNOWN, 500)
+	return newerk.IsError(err, ErrorReason_UNKNOWN, 500)
 }
 
 // Unknown error
 func ErrorUnknown(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(500, ErrorReason_UNKNOWN, format, args...)
+	return newerk.NewError(500, ErrorReason_UNKNOWN, format, args...)
 }
 
 // User not found
 func IsUserNotFound(err error) bool {
-	return errgenkratos.IsError(err, ErrorReason_USER_NOT_FOUND, 404)
+	return newerk.IsError(err, ErrorReason_USER_NOT_FOUND, 404)
 }
 
 // User not found
 func ErrorUserNotFound(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(404, ErrorReason_USER_NOT_FOUND, format, args...)
+	return newerk.NewError(404, ErrorReason_USER_NOT_FOUND, format, args...)
 }
 
 // Invalid parameter
 func IsInvalidParameter(err error) bool {
-	return errgenkratos.IsError(err, ErrorReason_INVALID_PARAMETER, 400)
+	return newerk.IsError(err, ErrorReason_INVALID_PARAMETER, 400)
 }
 
 // Invalid parameter
 func ErrorInvalidParameter(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(400, ErrorReason_INVALID_PARAMETER, format, args...)
+	return newerk.NewError(400, ErrorReason_INVALID_PARAMETER, format, args...)
 }

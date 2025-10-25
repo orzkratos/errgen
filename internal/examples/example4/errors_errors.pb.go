@@ -4,7 +4,7 @@ package example4
 
 import (
 	errors "github.com/go-kratos/kratos/v2/errors"
-	errgenkratos "github.com/orzkratos/errgenkratos"
+	newerk "github.com/orzkratos/errkratos/newerk"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -13,40 +13,40 @@ const _ = errors.SupportPackageIsVersion1
 
 // Unknown error
 func IsGetOrderResponse_Unknown(err error) bool {
-	return errgenkratos.IsError(err, GetOrderResponse_UNKNOWN, 500)
+	return newerk.IsError(err, GetOrderResponse_UNKNOWN, 500)
 }
 
 // Unknown error
 func ErrorGetOrderResponse_Unknown(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(500, GetOrderResponse_UNKNOWN, format, args...)
+	return newerk.NewError(500, GetOrderResponse_UNKNOWN, format, args...)
 }
 
 // Order not found
 func IsGetOrderResponse_OrderNotFound(err error) bool {
-	return errgenkratos.IsError(err, GetOrderResponse_ORDER_NOT_FOUND, 404)
+	return newerk.IsError(err, GetOrderResponse_ORDER_NOT_FOUND, 404)
 }
 
 // Order not found
 func ErrorGetOrderResponse_OrderNotFound(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(404, GetOrderResponse_ORDER_NOT_FOUND, format, args...)
+	return newerk.NewError(404, GetOrderResponse_ORDER_NOT_FOUND, format, args...)
 }
 
 // Order expired
 func IsGetOrderResponse_OrderExpired(err error) bool {
-	return errgenkratos.IsError(err, GetOrderResponse_ORDER_EXPIRED, 410)
+	return newerk.IsError(err, GetOrderResponse_ORDER_EXPIRED, 410)
 }
 
 // Order expired
 func ErrorGetOrderResponse_OrderExpired(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(410, GetOrderResponse_ORDER_EXPIRED, format, args...)
+	return newerk.NewError(410, GetOrderResponse_ORDER_EXPIRED, format, args...)
 }
 
 // Access denied
 func IsGetOrderResponse_AccessDenied(err error) bool {
-	return errgenkratos.IsError(err, GetOrderResponse_ACCESS_DENIED, 403)
+	return newerk.IsError(err, GetOrderResponse_ACCESS_DENIED, 403)
 }
 
 // Access denied
 func ErrorGetOrderResponse_AccessDenied(format string, args ...interface{}) *errors.Error {
-	return errgenkratos.NewError(403, GetOrderResponse_ACCESS_DENIED, format, args...)
+	return newerk.NewError(403, GetOrderResponse_ACCESS_DENIED, format, args...)
 }

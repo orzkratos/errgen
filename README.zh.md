@@ -57,12 +57,12 @@ protoc --go-errors_out=include_nested=true,separate_named=true,paths=source_rela
 
 // 用户未找到
 func IsUserNotFound(err error) bool {
-    return errgenkratos.IsError(err, ErrorReason_USER_NOT_FOUND, 404)
+    return newerk.IsError(err, ErrorReason_USER_NOT_FOUND, 404)
 }
 
-// 用户未找到  
+// 用户未找到
 func ErrorUserNotFound(format string, args ...interface{}) *errors.Error {
-    return errgenkratos.NewError(404, ErrorReason_USER_NOT_FOUND, format, args...)
+    return newerk.NewError(404, ErrorReason_USER_NOT_FOUND, format, args...)
 }
 ```
 
@@ -71,11 +71,11 @@ func ErrorUserNotFound(format string, args ...interface{}) *errors.Error {
 在业务代码中配置元数据字段：
 
 ```go
-import "github.com/orzkratos/errgen"
+import "github.com/orzkratos/errkratos/newerk"
 
 func init() {
     // 设置自定义元数据字段名
-    errgen.SetMetadataFieldName("codeNum")
+    newerk.SetReasonCodeFieldName("numeric_reason_code_enum")
 }
 ```
 
@@ -92,20 +92,20 @@ func init() {
 对于新功能和活跃开发，请考虑迁移到 [errgenkratos](https://github.com/orzkratos/errgenkratos)：
 
 ```bash
-# 安装新插件
+# 获取新插件
 go install github.com/orzkratos/errgenkratos/cmd/protoc-gen-orzkratos-errors@latest
 
 # 更新 protoc 命令
 protoc --orzkratos-errors_out=paths=source_relative:./your_output_dir your_proto_files.proto
 
 # 更新导入
-import "github.com/orzkratos/errgenkratos"
+import "github.com/orzkratos/errkratos/newerk"
 ```
 
 ## 环境要求
 
 - Go 1.25.0+
-- Protocol Buffers 编译器 (protoc)
+- ProtoBuf 编译器 (protoc)
 - Kratos v2.8.0+
 
 ---
